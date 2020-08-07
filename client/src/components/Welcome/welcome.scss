@@ -1,0 +1,98 @@
+/* replace px with em or flex box unify all the padding margin*/
+@import "../../scss/index";
+
+div.cardInformation{
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding-top: 10px;
+  .card{
+    width: 30%;
+    img{
+      display: block;
+      margin: 25px auto 0;
+      width: 100px;
+    }
+  }
+  .info{
+    width: 65%;
+  }
+}
+div.limit{
+  position: relative;
+  max-width: 411px;
+  margin: 30px auto;
+  padding: 0 100px;
+  .index{
+    position: absolute;
+    top:80px;
+    h5{
+      padding-bottom:30px
+    }
+    h3{
+      color: #3f51b5;
+      position: relative;
+      .dollor{
+        position: absolute;
+        top: 0;
+        left:-0.8em;
+        font-size: 40%;
+      }
+      .decimal{
+        font-size: 60%;
+      }
+
+    }
+  }  
+
+}
+div.grey-box{
+  background-color: #eaeaea;
+  width: 100%;
+}
+div.manageLimit{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  margin: auto;
+
+  .title{
+    display: flex;
+    justify-content: flex-start;
+    width: 90%;
+    margin: 20px auto;
+    img{
+      width: 60px;
+    }
+    h5{
+      margin-top: 0.8em;
+      margin-left:0.8em;
+    }
+  }
+  .maxLimit{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: auto;
+  }
+  .manage{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: auto;
+    p{
+      padding-top: 25px;
+    }
+
+
+  }
+  .submit{
+    width: 80%;
+    margin: 10px auto 20px;
+    button{
+      width: 150px;
+    }
+  }
+}
+

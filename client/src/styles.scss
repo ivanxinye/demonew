@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+@import "scss/index";
+
+.container {
+    display: block;
+    position: relative;
+    margin: 76px 0 67px 0;
+    width: 100%;
+    height:calc(100vh - 143px);
+    background: white right center;
+    background-size: 100% 100%;;
+  }
+.center-block {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+  
+  }
+  .center-block-vertical {
+    @extend .center-block;
+    flex-direction: column;
+  }
+  
+  .center-block-horizonal {
+    @extend .center-block;
+    flex-direction: row;
+  }

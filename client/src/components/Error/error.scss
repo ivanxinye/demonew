@@ -1,0 +1,28 @@
+/* replace px with em or flex box unify all the padding margin*/
+@import "../../scss/index";
+
+img{
+  display: block;
+  margin: 100px auto 0;
+  width: 80%;
+}
+
+div.result{
+  position: absolute;
+  bottom: 0;
+  background-color: #eaeaea;
+  width: 100%;
+  margin: auto;
+
+  div{
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    margin: 20px auto;
+    button{
+      width: 150px;
+    }
+
+  }
+}
+

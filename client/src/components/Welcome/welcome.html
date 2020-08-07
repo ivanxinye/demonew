@@ -1,0 +1,82 @@
+<div class="cardInformation responsive-box">
+    <div class="card center-block-horizonal">
+        <img class="" src="assets/imgs/cridit.jpeg" alt="credit card">
+    </div>
+    <div class="info">
+        <form *ngIf="selectedCard">
+            <mat-form-field>
+                <mat-select [(ngModel)]="selectedCard" name="card" (change)="cardChange()">
+                <mat-option *ngFor="let card of cards" [value]="card">
+                    {{card.name}}
+                </mat-option>
+                </mat-select>
+            </mat-form-field>
+            
+            <p> {{selectedCard.number}} </p>
+        </form>
+    </div>
+</div>
+<div class="limit center-block-horizonal responsive-box" *ngIf="selectedCard">
+    <round-progress
+    [current]="current"
+    [max]="max"
+    [color]="'#3f51b5'"
+    [background]="'#eaeaea'"
+    [radius]="125"
+    [stroke]="20"
+    [semicircle]="false"
+    [rounded]="true"
+    [clockwise]="true"
+    [responsive]="false"
+    [duration]="800"
+    [animation]="'easeInOutQuart'"
+    [animationDelay]="0"></round-progress>
+    <div class="index" *ngIf="selectedCard">
+        <h5>
+            Available Limit
+        </h5>
+        <h3>
+            <span class="dollor">$</span>
+            <span>
+                {{selectedCard.availiableLimit | currecyInt}}  
+                <span class="decimal">.{{selectedCard.availiableLimit | currecyDec}}</span>
+            </span>
+            
+        </h3>
+        
+    </div>
+</div>
+    <div class="manageLimit responsive-box" *ngIf="selectedCard">
+        <div class="title">
+            <img src="assets/icons/chat.svg" alt="">
+            <h5>Limit Increase</h5>
+        </div>
+        <div class="maxLimit">
+            <p>Maximum Increase Amount</p>
+            <p>{{selectedCard.maxIncreaseAmount}}</p>
+        </div>
+        <div class="manage">
+            <p>Increase Limit To </p>
+            <form class="example-form">
+                <mat-form-field class="example-full-width">
+                    <input 
+                        matInput 
+                        placeholder="Amount" 
+                        [required] = true
+                        [(ngModel)]="increaseTo"
+                        [ngModelOptions]="{standalone: true}"
+                        (keyup)="checkError()"
+                        (blur)="increaseTo = user.changeCurrency(increaseTo)">
+                    
+                        <mat-error *ngIf="amountError && !canSubmit">
+                        Should be {{selectedCard.maxIncreaseAmount}} and {{'>' + selectedCard.availiableLimit}}!
+                        </mat-error>
+                    <span matPrefix>$&nbsp;</span>
+                </mat-form-field>
+            </form>
+        </div>
+        <div class="submit center-block-horizonal">
+            <button mat-raised-button color="primary" [disabled]="canSubmit" (click)="increaseLimit()">submit</button>
+        </div>   
+    </div>
+

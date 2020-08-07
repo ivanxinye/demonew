@@ -1,0 +1,21 @@
+<div class="center-block-horizonal center-block-vertical">
+    <img class="" src="assets/imgs/success.jpeg" alt="credit card">
+</div>
+<div class="result" *ngIf="selectedCard">
+    <div class="center-block-vertical">
+        <h5>Request Submit Successfully!</h5>
+    </div>
+    <div>
+        <p>Tranaction Card</p>
+        <p>{{selectedCard.number}}</p>
+    </div>
+    <div>
+        <p>Increase Limit To </p>
+        <p>{{selectedCard.availiableLimit | currecyWhole}}</p>
+    </div>
+    <div>
+        <p>Request Schedule Date</p>
+        <p>{{date | date}}</p>
+    </div>
+    
+</div>
