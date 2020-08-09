@@ -27,27 +27,37 @@ export class WelcomePage implements OnInit{
     }
     getCardInfo(){
         this.user.isLoading(true);
-        this.http.get('/users/showAllCards').subscribe(    
-            res => {
-                var percent
-                this.cards = res
-                this.selectedCard = this.cards[0]
-                percent = this.selectedCard.availiableLimit/this.selectedCard.maxIncreaseAmount*100
-                this.savedNum = this.selectedCard.availiableLimit
-                this.startRingData(percent);
-                this.user.isLoading(false);
-            },
-            err => {
-                this.router.navigate(['/error'])
-                this.user.isLoading(false);
-            }
-        )
+        return this.http.get('/users/showAllCards').toPromise()
+    }
+    success(res){
+        var percent
+        this.cards = res
+        this.selectedCard = this.cards[0]
+        percent = this.selectedCard.availiableLimit/this.selectedCard.maxIncreaseAmount*100
+        this.savedNum = this.selectedCard.availiableLimit
+        this.startRingData(percent);
+        this.user.isLoading(false);
+    }
+    fail(err){
+        this.router.navigate(['/error'])
+        this.user.isLoading(false);
     }
     cardChange(){
         var percent = this.selectedCard.availiableLimit/this.selectedCard.maxIncreaseAmount*100
         this.startRingData(percent)
     }
     increaseLimit(){
+        this.syncInvolk().then(
+            res => this.success(res),
+            err => this.fail(err)
+        )
+    }
+    async syncInvolk(){
+        await this.increase()
+        let data = await this.getCardInfo()
+        return data
+    }
+    increase(){
         this.user.isLoading(true);
         this.selectedCard.availiableLimit = parseFloat(this.selectedCard.availiableLimit)
         var data = this.selectedCard
@@ -81,6 +91,9 @@ export class WelcomePage implements OnInit{
     
     ngOnInit() {
         this.user.isLoading(false)
-        this.getCardInfo()  
+        this.getCardInfo().then(    
+            res => this.success(res),
+            err => this.fail(err)
+        )  
     }
 }
